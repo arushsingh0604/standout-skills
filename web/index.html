@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Standout Skills Connect</title>
+  <style>
+    body { font-family: sans-serif; padding: 40px; background: #f4f4f4; }
+    h1 { color: #333; }
+    button { padding: 12px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
+    table { margin-top: 20px; width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <h1>Standout Skills Connect</h1>
+  <p>Need help? Click below to find teammates who are available to collaborate or mentor.</p>
+  <button onclick="loadExperts()">Find Available Experts</button>
+
+  <table id="result" style="display:none;">
+    <thead>
+      <tr><th>Name</th><th>Skill</th><th>Location</th><th>Experience (yrs)</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    function loadExperts() {
+      fetch("http://10.0.4.45:5000/available-skills")
+        .then(res => res.json())
+        .then(data => {
+          const table = document.getElementById("result");
+          const tbody = table.querySelector("tbody");
+          tbody.innerHTML = "";
+          data.forEach(person => {
+            const row = `<tr>
+              <td>${person.name}</td>
+              <td>${person.skill}</td>
+              <td>${person.location}</td>
+              <td>${person.experience}</td>
+            </tr>`;
+            tbody.innerHTML += row;
+          });
+          table.style.display = "table";
+        })
+        .catch(() => alert("Error fetching experts. Try again."));
+    }
+  </script>
+</body>
+</html>
 
