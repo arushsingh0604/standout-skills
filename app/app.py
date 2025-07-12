@@ -7,7 +7,7 @@ app = Flask(__name__)
 def available_skills():
     try:
         db = mysql.connector.connect(
-            host="10.0.3.200",
+            host="10.0.3.180",
             user="appuser",
             password="yourpassword",
             database="employee_db"
