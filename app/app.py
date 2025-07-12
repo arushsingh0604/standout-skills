@@ -3,13 +3,19 @@ import mysql.connector
 
 app = Flask(__name__)
 
+# Home route to test if app is running
+@app.route("/")
+def home():
+    return "Standout App Layer is Live"
+
+# API route to fetch available skills from database
 @app.route("/available-skills")
 def available_skills():
     try:
         db = mysql.connector.connect(
-            host="10.0.3.180",
-            user="appuser",
-            password="yourpassword",
+            host="10.0.3.180",           # Replace with actual private IP of DB instance
+            user="appuser",              # Replace with actual DB username
+            password="yourpassword",     # Replace with actual DB password
             database="employee_db"
         )
         cursor = db.cursor()
@@ -24,4 +30,3 @@ def available_skills():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
-
