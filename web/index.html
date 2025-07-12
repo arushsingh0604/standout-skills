@@ -24,7 +24,7 @@
 
   <script>
     function loadExperts() {
-      fetch("http://10.0.4.45:5000/available-skills")
+      fetch("http://10.0.3.104:5000/available-skills")
         .then(res => res.json())
         .then(data => {
           const table = document.getElementById("result");
