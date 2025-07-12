@@ -60,7 +60,7 @@
 
 <script>
   function fetchExperts() {
-    fetch("http://10.0.3.104:5000/available-skills")  // Replace with your App Layer Private IP
+    fetch("/available-skills")  // relative path in app layer
       .then(response => response.json())
       .then(data => {
         const table = document.getElementById("expertTable");
